@@ -2,7 +2,7 @@ module Doit.Update exposing (update, init)
 
 import Http
 import Json.Decode as Decode
-import Doit.Model exposing (initialModel, Model)
+import Doit.Model exposing (initialModel, Model, Task)
 import Doit.Messages exposing (Msg(..))
 
 
@@ -13,10 +13,18 @@ update msg model =
             ( model, Cmd.none )
 
         LoadTasks (Ok newUrl) ->
-            ( model, Cmd.none )
+            let
+                _ =
+                    Debug.log "hoy" newUrl
+            in
+                ( { model | error = Nothing }, Cmd.none )
 
-        LoadTasks (Err _) ->
-            ( model, Cmd.none )
+        LoadTasks (Err error) ->
+            let
+                _ =
+                    Debug.log "error" error
+            in
+                ( { model | error = Just error }, Cmd.none )
 
 
 init : ( Model, Cmd Msg )
@@ -39,6 +47,16 @@ loadTasks =
         Http.send LoadTasks (Http.get url decodeTasks)
 
 
-decodeTasks : Decode.Decoder String
+decodeTasks : Decode.Decoder (List Task)
 decodeTasks =
-    Decode.at [ "data", "image_url" ] Decode.string
+    Decode.at [ "data" ] <| Decode.list decodeTask
+
+
+decodeTask : Decode.Decoder Task
+decodeTask =
+    Decode.map5 Task
+        (Decode.at [ "id" ] Decode.int)
+        (Decode.at [ "title" ] Decode.string)
+        (Decode.at [ "description" ] Decode.string)
+        (Decode.at [ "completed" ] Decode.bool)
+        (Decode.at [ "due_date" ] Decode.string)
