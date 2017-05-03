@@ -38,5 +38,7 @@ defmodule Doit.Endpoint do
     key: "_doit_key",
     signing_salt: "V0N3eYxA"
 
+  plug CORSPlug
+  
   plug Doit.Router
 end
