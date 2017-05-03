@@ -4,12 +4,16 @@ import Http
 
 
 type alias Model =
-    { error : Maybe Http.Error }
+    { tasks : List Task
+    , error : Maybe Http.Error
+    }
 
 
 initialModel : Model
 initialModel =
-    { error = Nothing }
+    { tasks = []
+    , error = Nothing
+    }
 
 
 type alias Task =
@@ -18,4 +22,5 @@ type alias Task =
     , description : String
     , completed : Bool
     , dueDate : String
+    , editing : Bool
     }

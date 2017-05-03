@@ -12,12 +12,8 @@ update msg model =
         NoOp ->
             ( model, Cmd.none )
 
-        LoadTasks (Ok newUrl) ->
-            let
-                _ =
-                    Debug.log "hoy" newUrl
-            in
-                ( { model | error = Nothing }, Cmd.none )
+        LoadTasks (Ok tasks) ->
+            ( { model | error = Nothing, tasks = tasks }, Cmd.none )
 
         LoadTasks (Err error) ->
             let
@@ -54,9 +50,11 @@ decodeTasks =
 
 decodeTask : Decode.Decoder Task
 decodeTask =
-    Decode.map5 Task
+    Decode.map6 Task
         (Decode.at [ "id" ] Decode.int)
         (Decode.at [ "title" ] Decode.string)
         (Decode.at [ "description" ] Decode.string)
         (Decode.at [ "completed" ] Decode.bool)
         (Decode.at [ "due_date" ] Decode.string)
+        -- Hardcode False for "editing".
+        (Decode.succeed False)
