@@ -12,7 +12,7 @@ config :doit,
 # Configures the endpoint
 config :doit, Doit.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "BC0RV/JIcptZHOCMH4px7SfVaTcvpgWf1DCRaik+C0/4OJ0fp5s1Ycz5xaWVQjLw",
+  secret_key_base: "ls2cWbwwSZDH6wsTSn5bHGn+dr9aNyqGaEw0Cmfr7BGrXuQQOUbisR0/n9WB8cbo",
   render_errors: [view: Doit.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Doit.PubSub,
            adapter: Phoenix.PubSub.PG2]

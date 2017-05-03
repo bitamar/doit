@@ -36,7 +36,7 @@ defmodule Doit.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_doit_key",
-    signing_salt: "krXrcebA"
+    signing_salt: "V0N3eYxA"
 
   plug Doit.Router
 end
