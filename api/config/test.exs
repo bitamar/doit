@@ -6,6 +6,10 @@ config :doit, Doit.Endpoint,
   http: [port: 4001],
   server: false
 
+# Turn off encryption on tests. 
+config :comeonin, :bcrypt_log_rounds, 4
+config :comeonin, :pbkdf2_rounds, 1
+
 # Print only warnings and errors during test
 config :logger, level: :warn
 

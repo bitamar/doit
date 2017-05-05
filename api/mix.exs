@@ -18,7 +18,7 @@ defmodule Doit.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Doit, []},
-     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
+     applications: [:comeonin, :phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
                     :phoenix_ecto, :mariaex]]
   end
 
@@ -30,7 +30,8 @@ defmodule Doit.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:cors_plug, "~> 1.1"},
+    [{:comeonin, "~> 2.0"},
+     {:cors_plug, "~> 1.1"},
      {:phoenix, "~> 1.2.1"},
      {:phoenix_pubsub, "~> 1.0"},
      {:phoenix_ecto, "~> 3.0"},
