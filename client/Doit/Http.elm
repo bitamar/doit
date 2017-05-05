@@ -14,7 +14,7 @@ loadTasks : Url -> Cmd Msg
 loadTasks apiUrl =
     let
         tasksUrl =
-            apiUrl ++ "/api/tasks"
+            apiUrl ++ "/tasks"
     in
         Http.send LoadTasks (Http.get tasksUrl decodeTasks)
 

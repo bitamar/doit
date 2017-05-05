@@ -25,5 +25,5 @@ update msg model =
 init : ( Model, Cmd Msg )
 init =
     ( initialModel
-    , loadTasks "http://localhost:4000"
+    , loadTasks "http://localhost:4000/api"
     )
