@@ -21,7 +21,8 @@ defmodule Doit.Router do
 
   scope "/api", Doit do
     pipe_through :api
-
+    
+    resources "/sessions", SessionController, only: [:create]
     resources "/tasks", TaskController, except: [:new, :edit]
     resources "/users", UserController, only: [:create]
   end

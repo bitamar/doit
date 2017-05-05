@@ -26,20 +26,21 @@ defmodule Doit.Mixfile do
   defp elixirc_paths(:test), do: ["lib", "web", "test/support"]
   defp elixirc_paths(_),     do: ["lib", "web"]
 
-  # Specifies your project dependencies.
+  # Dependencies.
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:comeonin, "~> 2.0"},
-     {:cors_plug, "~> 1.1"},
-     {:phoenix, "~> 1.2.1"},
-     {:phoenix_pubsub, "~> 1.0"},
-     {:phoenix_ecto, "~> 3.0"},
-     {:mariaex, ">= 0.0.0"},
-     {:phoenix_html, "~> 2.6"},
-     {:phoenix_live_reload, "~> 1.0", only: :dev},
-     {:gettext, "~> 0.11"},
-     {:cowboy, "~> 1.0"}]
+    [{:comeonin, "2.6.0"},
+     {:cors_plug, "1.2.1"},
+     {:cowboy, "1.1.2"},
+     {:gettext, "0.13.1"},
+     {:mariaex, "0.8.2"},
+     {:phoenix, "1.2.3"},
+     {:phoenix_ecto, "3.2.3"},
+     {:phoenix_html, "2.9.3"},
+     {:phoenix_live_reload, "1.0.8", only: :dev},
+     {:phoenix_pubsub, "1.0.1"},
+     {:secure_random, "0.5.1"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
