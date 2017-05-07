@@ -16,7 +16,7 @@ defmodule Doit.Task do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:title, :description, :due_date, :completed])
-    |> validate_required([:title, :description, :due_date, :completed])
+    |> cast(params, [:title, :description, :due_date, :completed, :user_id])
+    |> validate_required([:title, :description, :due_date, :completed, :user_id])
   end
 end
