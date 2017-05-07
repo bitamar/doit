@@ -1,7 +1,7 @@
 module Doit.Http exposing (loadTasks)
 
 import Http
-import Json.Decode as Decode
+import Json.Decode as Decode exposing (at, bool, field, int, map6, maybe, string, succeed)
 import Doit.Messages exposing (Msg(..))
 import Doit.Model exposing (initialModel, Model, Task)
 
@@ -21,16 +21,16 @@ loadTasks apiUrl =
 
 decodeTasks : Decode.Decoder (List Task)
 decodeTasks =
-    Decode.at [ "data" ] <| Decode.list decodeTask
+    at [ "data" ] <| Decode.list decodeTask
 
 
 decodeTask : Decode.Decoder Task
 decodeTask =
-    Decode.map6 Task
-        (Decode.at [ "id" ] Decode.int)
-        (Decode.at [ "title" ] Decode.string)
-        (Decode.maybe <| Decode.at [ "description" ] Decode.string)
-        (Decode.at [ "completed" ] Decode.bool)
-        (Decode.maybe <| Decode.at [ "due_date" ] Decode.string)
+    map6 Task
+        (field "id" int)
+        (field "title" string)
+        (field "description" <| maybe string)
+        (field "completed" bool)
+        (field "due_date" <| maybe string)
         -- Hardcode False for "editing".
-        (Decode.succeed False)
+        (succeed False)
