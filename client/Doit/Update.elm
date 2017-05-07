@@ -15,11 +15,7 @@ update msg model =
             ( { model | error = Nothing, tasks = tasks }, Cmd.none )
 
         LoadTasks (Err error) ->
-            let
-                _ =
-                    Debug.log "error" error
-            in
-                ( { model | error = Just error }, Cmd.none )
+            ( { model | error = Just error }, Cmd.none )
 
 
 init : ( Model, Cmd Msg )

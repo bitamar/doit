@@ -19,8 +19,8 @@ initialModel =
 type alias Task =
     { id : Int
     , title : String
-    , description : String
+    , description : Maybe String
     , completed : Bool
-    , dueDate : String
+    , dueDate : Maybe String
     , editing : Bool
     }

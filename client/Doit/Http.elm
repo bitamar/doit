@@ -29,8 +29,8 @@ decodeTask =
     Decode.map6 Task
         (Decode.at [ "id" ] Decode.int)
         (Decode.at [ "title" ] Decode.string)
-        (Decode.at [ "description" ] Decode.string)
+        (Decode.maybe <| Decode.at [ "description" ] Decode.string)
         (Decode.at [ "completed" ] Decode.bool)
-        (Decode.at [ "due_date" ] Decode.string)
+        (Decode.maybe <| Decode.at [ "due_date" ] Decode.string)
         -- Hardcode False for "editing".
         (Decode.succeed False)
