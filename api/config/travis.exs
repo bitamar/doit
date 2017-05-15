@@ -13,4 +13,11 @@ config :comeonin, :pbkdf2_rounds, 1
 # Print only warnings and errors during test
 config :logger, level: :warn
 
-import_config "test.secret.exs"
+# Configure your database
+config :doit, Doit.Repo,
+  adapter: Ecto.Adapters.MySQL,
+  username: "travis",
+  password: "",
+  database: "test",
+  hostname: "localhost",
+  pool: Ecto.Adapters.SQL.Sandbox
