@@ -10,7 +10,7 @@ services:
   - mysql
 
 env:
-  - MIX_ENV=test
+  - MIX_ENV=travis
 
 before_install:
   - cd api
