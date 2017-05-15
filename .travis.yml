@@ -3,9 +3,7 @@ language: elixir
 elixir:
   - 1.4.2
 
-otp_release:
-  - 19.0
-
 script:
+  - echo "hihi"
   - cd api
   - mix test
