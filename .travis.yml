@@ -6,8 +6,11 @@ elixir:
 otp_release:
   - 19.0
 
+services:
+  - mysql
+
 env:
-  - test
+  - MIX_ENV=test
 
 before_install:
   - cd api
