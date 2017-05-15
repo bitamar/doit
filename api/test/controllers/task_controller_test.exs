@@ -5,8 +5,6 @@ defmodule Doit.TaskControllerTest do
   alias Doit.User
   alias Doit.Session
 
-  @valid_attrs %{completed: true, description: "some content", due_date: %{day: 17, month: 4, year: 2010}, title: "some content", user_id: 1}
-
   setup %{conn: conn} do
     user = create_user(%{name: "jane"})
     session = create_session(user)
@@ -44,9 +42,10 @@ defmodule Doit.TaskControllerTest do
   end
 
   test "creates and renders resource when data is valid", %{conn: conn, current_user: current_user} do
-    conn = post conn, task_path(conn, :create), task: @valid_attrs
+    task_ = %{completed: true, description: "some content", due_date: %{day: 17, month: 4, year: 2010}, title: "some content", user_id: current_user.id}
+    conn = post conn, task_path(conn, :create), task: task_
     assert json_response(conn, 201)["data"]["id"]
-    task = Repo.get_by(Task, @valid_attrs)
+    task = Repo.get_by(Task, task_)
     assert task
     assert task.user_id == current_user.id
   end
