@@ -6,5 +6,8 @@ elixir:
 otp_release:
   - 19.0
 
+env:
+  - test
+
 before_install:
   - cd api
