@@ -6,5 +6,6 @@ elixir:
 otp_release:
   - 19.0
 
-before_script:
+script:
   - cd api
+  - mix test
