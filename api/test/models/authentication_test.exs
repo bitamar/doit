@@ -11,7 +11,7 @@ defmodule Doit.AuthenticationTest do
   end
 
   test "finds the user by token", %{conn: conn} do
-    user = Repo.insert!(%User{})
+    user = Repo.insert!(%User{name: "bob", email: "bob@example.cc"})
     session = Repo.insert!(%Session{token: "123", user_id: user.id})
 
     conn = conn
