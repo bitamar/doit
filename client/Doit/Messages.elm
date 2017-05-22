@@ -1,9 +1,9 @@
 module Doit.Messages exposing (Msg(..))
 
 import Http
-import Doit.Model exposing (Task)
+import Doit.Model exposing (Input, Task)
 
 
 type Msg
-    = NoOp
+    = InputChange Input String
     | LoadTasks (Result Http.Error (List Task))

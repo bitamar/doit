@@ -1,12 +1,16 @@
-module Doit.Model exposing (initialModel, Model, Page(..), Task)
+module Doit.Model exposing (initialModel, Input(..), Model, Page(..), Task)
 
 import Http
 
 
 type Page
-    = Register
-    | Login
+    = Login
     | Tasks
+
+
+type Input
+    = Email
+    | Password
 
 
 type alias Model =
@@ -14,6 +18,10 @@ type alias Model =
     , accessToken : Maybe String
     , tasks : Maybe (List Task)
     , error : Maybe Http.Error
+    , inputs :
+        { email : Maybe String
+        , password : Maybe String
+        }
     }
 
 
@@ -23,6 +31,10 @@ initialModel =
     , accessToken = Nothing
     , tasks = Nothing
     , error = Nothing
+    , inputs =
+        { email = Nothing
+        , password = Nothing
+        }
     }
 
 

@@ -2,14 +2,19 @@ module Doit.View exposing (view)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (..)
 import Http
-import Doit.Model exposing (Model, Page(..), Task)
+import Doit.Model exposing (Model, Input(..), Page(..), Task)
 import Doit.Messages exposing (Msg(..))
 
 
 view : Model -> Html Msg
 view model =
-    viewMainContent model
+    div []
+        [ node "link" [ rel "stylesheet", href "mui.min.css" ] []
+        , viewMainContent model
+        , div [ class "mui-panel" ] [ pre [] [ text <| toString model ] ]
+        ]
 
 
 viewMainContent : Model -> Html Msg
@@ -24,9 +29,6 @@ viewMainContent model =
                 Login ->
                     viewLogin
 
-                Register ->
-                    viewRegister
-
                 Tasks ->
                     viewTasks model.tasks
 
@@ -35,6 +37,21 @@ viewError : Http.Error -> Html Msg
 viewError error =
     div []
         [ text <| toString error
+        ]
+
+
+viewLogin : Html Msg
+viewLogin =
+    Html.form [ class "mui-form mui-panel" ]
+        [ div [ class "mui-textfield" ]
+            [ input [ onInput (InputChange Email), type_ "email", required True ] []
+            , label [] [ text "Email" ]
+            ]
+        , div [ class "mui-textfield" ]
+            [ input [ onInput (InputChange Password), type_ "password", required True, minlength 5 ] []
+            , label [] [ text "Password" ]
+            ]
+        , button [ class "mui-btn mui-btn--raised" ] [ text "Login / Register" ]
         ]
 
 
@@ -64,27 +81,6 @@ viewTask task =
             ]
             []
         ]
-
-
-textInput id inputType label =
-    div []
-        [ Html.label [ for id ] [ text label ]
-        , input [ Html.Attributes.id id, placeholder label, type_ inputType ] []
-        ]
-
-
-viewLogin : Html Msg
-viewLogin =
-    Html.form []
-        [ textInput "email" "email" "Email"
-        , textInput "password" "password" "Password"
-        , button [] [ text "Login" ]
-        ]
-
-
-viewRegister : Html Msg
-viewRegister =
-    div [] [ text "Register" ]
 
 
 viewTasks : Maybe (List Task) -> Html Msg
