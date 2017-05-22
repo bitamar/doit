@@ -1,17 +1,27 @@
-module Doit.Model exposing (initialModel, Model, Task)
+module Doit.Model exposing (initialModel, Model, Page(..), Task)
 
 import Http
 
 
+type Page
+    = Register
+    | Login
+    | Tasks
+
+
 type alias Model =
-    { tasks : List Task
+    { activePage : Page
+    , accessToken : Maybe String
+    , tasks : Maybe (List Task)
     , error : Maybe Http.Error
     }
 
 
 initialModel : Model
 initialModel =
-    { tasks = []
+    { activePage = Login
+    , accessToken = Nothing
+    , tasks = Nothing
     , error = Nothing
     }
 
